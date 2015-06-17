@@ -30,6 +30,22 @@ mysqlpcap 是一个基于 pcap 用于观察 sql 语句执行情况的工具。�
 ## 针对某个port的sql抓取
 	sudo ./mysqlpcap -p 3001
 
+
+## ip:port features
+```
+timestamp           source ip        latency(us) rows         user      db          sql
+--------------      ---------------  ----------  -------      ----      --          ---
+17:32:27:461220     10.3.254.100:52282   143         1       root      percona      select @@version_comment limit 1
+17:32:29:306711     10.3.254.100:52282   423         3       root      percona      show tables
+17:32:38:135849     10.3.254.100:52282   307         16      root      percona      select * from favorite_food
+17:32:46:836896     10.3.254.100:52282   102         0       root      percona      start transaction
+17:33:1:642846      10.3.254.100:52282   433         1       root      percona      insert into favorite_food values(4, 'update')
+17:33:11:602343     10.3.254.100:52282   553         0       root      percona      commit
+```
+
+在一些环境下, 可以通过 ip:port 的方式统计MySQL中单个线程事务(或非事务语句)的执行情况, 该特性可以用来判断应用程序是否正常启用关闭事务.
+
+
 ##output format
 
 	timestamp           sql                                     latency(us)     rows            
