@@ -895,7 +895,7 @@ outbound(MysqlPcap *mp, char *data, uint32 datalen,
                 tm->tm_hour, tm->tm_min, tm->tm_sec, tv2.tv_usec);
 
             if (mp->isShowSrcIp == 1) {
-                if (num =! -2) {
+                if (num != -2) {
                    mp->addCache(mp, "%-20.20s%s:%-8d%-12lu%-8ld%-10.9s%-12.12s %s [%s]\n", tt,
                        srcip, dport, latency , num, user, db, sql, value?value:"");
                 }
